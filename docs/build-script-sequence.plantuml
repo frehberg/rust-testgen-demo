@@ -1,0 +1,31 @@
+@startuml
+skinparam monochrome true
+participant "cargo build" as B
+participant "build-script" as C
+participant "build-deps" as D
+participant "filesystem" as E
+
+activate B
+B -> B: Check Entity-List changed,\n conditional rerun
+
+create C
+B -> C: execute
+activate C
+
+create D
+C -> D: rerun-if-changed_paths (filter)
+activate D
+
+D -> E: readDirectories
+D <- E: DirectoryEntities
+D -> D: filter Entities
+B <- D: rerun-if-changed(Entities)
+C <-- D:
+deactivate D
+B <-- C:
+deactivate C
+
+B -> B: store Entity-List
+
+@enduml
+

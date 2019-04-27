@@ -1,0 +1,16 @@
+[package]
+name = "rust-testgen-demo"
+version = "0.1.0"
+authors = ["Frank Rehberger <frehberg@gmail.com>"]
+edition = "2018"
+build = "build.rs"
+
+[dependencies]
+
+[dev-dependencies]
+test-case-derive = "^0.2"
+test-generator = "^0.2"
+
+[build-dependencies]
+build-deps = "^0.1"
+
